@@ -7,6 +7,7 @@ output:
     fig_width: 4
     toc: yes
     toc_depth: 5
+    toc_float: yes
   pdf_document: 
     fig_height: 4
     fig_width: 4
@@ -215,13 +216,13 @@ round(a,4)
 
 读取的CSV数据相当于一个DataFrame
 
-```{r}
+```
 data1=read.csv(file="~/Rdata/EsH-CTF.csv")
 ```
 
 读取本地csv文件，逗号分隔
 
-```{r}
+```
 data2=read.table(file="~/Rdata/EsH-noCTF.csv")
 ```
 
