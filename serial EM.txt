@@ -1,28 +1,41 @@
-×ÜÌåµÄ
-±£»¤K2,ÔÚ±ä½¹£¬uencentric£¬colume valveÖ®ÀàµÄÊ±ºò£¬ÏÂÆÁÄ»£¬±£»¤k2
-stopµÄÊ±ºò»á×Ô¶¯¹Øcolume valve
-magÖ®ÀàµÄ£¬¶¼ÔÚserial EM µ÷½Ú
+## æ€»ä½“çš„
+ä¿æŠ¤K2,åœ¨å˜ç„¦ï¼Œuencentricï¼Œcolume valveä¹‹ç±»çš„æ—¶å€™ï¼Œä¸‹å±å¹•ï¼Œä¿æŠ¤k2
+stopçš„æ—¶å€™ä¼šè‡ªåŠ¨å…³colume valve
+magä¹‹ç±»çš„ï¼Œéƒ½åœ¨serial EM è°ƒèŠ‚
 
-1 load sample 
-¸øÍ­Íø¼Óauto ring
+## 1 load sample 
+ç»™é“œç½‘åŠ auto ring
 
-2 autoloader
-turbo on
-load sample
-¹Û²ìÊ±turbo off
+## 2 autoloader
 
-3 serial EM
+turbo on  
+load sample  
+è§‚å¯Ÿæ—¶turbo off   
 
+## 3 serial EM
 
-40xµÄĞ¡µØÍ¼
-navigator-open Ò»¸öĞÂµÄnavigator
-
+æ€»ä½“æ¥è®²ï¼Œæ”¾å¤§å€æ•°ï¼Œæ‹æ‘„æ¨¡å¼ä¹‹ç±»çš„å¾ˆå¤šéƒ½æ˜¯åœ¨serial EMé‚£é‡Œæ§åˆ¶çš„
 
 
-add marer
+40xçš„å°åœ°å›¾
+åœ¨élow doseä¸‹ï¼Œå³ä¾§å–æ¶ˆå‹¾é€‰low dose
+navigator-openä¸€ä¸ªæ–°çš„navigator
+motage-9Ã—9
+
+å°åœ°å›¾æ‹æ‘„å®Œæˆå  
+å¯¹å‡†å°åœ°å›¾å’Œstageçš„å®é™…ä½ç½®  
+
+add marekr
 go to xyz
-ÏÂccd£¬¿´µ½ÄÇ¸öÎ»ÖÃ£¬µ½ÖĞ¼ä
-ÂÌÉ«µÄview£¬serial EM ÅÄÉãÒ»ÕÅ
-µãÉÏmarker£¬Í¼ÉÏµãÉÏÒ»¸ömarker£¬navigator--shift item
-¶à½øĞĞ¼¸´Î£¬lmmºÍÊµ¼ÊÎ»ÖÃ¾ÍÒ»ÑùÁË
+ä¸‹è§å±ccdï¼Œçœ‹åˆ°é‚£ä¸ªä½ç½®ï¼Œåˆ°ä¸­é—´
+ç»¿è‰²çš„viewï¼Œserial EM æ‹æ‘„ä¸€å¼ 
+ç‚¹ä¸Šmarkerï¼Œå›¾ä¸Šç‚¹ä¸Šä¸€ä¸ªmarkerï¼Œnavigator--shift item
+å¤šè¿›è¡Œå‡ æ¬¡ï¼Œlmmå’Œå®é™…ä½ç½®å°±ä¸€æ ·äº†
 
+ç„¶åå±å¹•ä¸Šadd markerï¼Œæˆ–è€…ç›´æ¥add stage position
+
+æˆ–è€…ä¸æ‹å°åœ°å›¾ï¼Œç›´æ¥æä¸­åœ°å›¾  
+åœ¨è§å±ä¸‹ç›´æ¥æŒªåˆ°å­”çš„ä¸­é—´ï¼Œç„¶ånavigatorçª—å£-add stage position
+
+æå®Œä¸­åœ°å›¾ï¼Œé€‰ç‚¹
+adding point
