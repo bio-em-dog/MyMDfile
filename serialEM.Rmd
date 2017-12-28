@@ -1,0 +1,55 @@
+# 总体的
+
+保护K2,在变焦，uncentric，colume valve之类的时候，下屏幕，保护k2  
+stop的时候会自动关colume valve  
+mag之类的，都在serial EM 调节  
+
+## 1 load sample 
+
+给铜网加auto ring  
+加ring的棒子一定要擦干  
+
+
+## 2 autoloader
+
+turbo on  
+load，可以在铜网后面加备注
+观察时turbo off，如果要频繁换，就先不off
+
+## 3 serial EM
+
+总体来讲，放大倍数，拍摄模式之类的很多都是在serial EM那里控制的
+
+
+### 40x的小地图
+
+在非low dose下，右侧取消勾选low dose
+navigator-open一个新的navigator
+motage-9×9 然后会出现要存的位置，存为lmm(low mag map)
+
+
+### 对准小地图和stage的实际位置  
+
+小地图拍摄完成后  
+在一个标志性的点add marekr  
+选中marker，go to xyz  
+下荧屏ccd，看到那个位置，到K2（绿色框）中间  
+绿色的view，serial EM 拍摄一张
+点上marker，图上点上一个marker，navigator--shift item
+多进行几次，lmm和实际位置就一样了
+
+### 拍中地图
+
+在lmm上add marker，或者直接add stage position  
+选上acquire
+
+或者不拍小地图，直接搞中地图  
+在荧屏下直接挪到孔的中间，然后navigator窗口-add stage position
+
+### 选点
+
+adding point  
+第一个点加在碳膜上用于对焦，剩下的点选在附近
+都选上acquire和file
+
+### set那里设置好
