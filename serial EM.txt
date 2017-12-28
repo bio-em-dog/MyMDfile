@@ -1,0 +1,28 @@
+总体的
+保护K2,在变焦，uencentric，colume valve之类的时候，下屏幕，保护k2
+stop的时候会自动关colume valve
+mag之类的，都在serial EM 调节
+
+1 load sample 
+给铜网加auto ring
+
+2 autoloader
+turbo on
+load sample
+观察时turbo off
+
+3 serial EM
+
+
+40x的小地图
+navigator-open 一个新的navigator
+
+
+
+add marer
+go to xyz
+下ccd，看到那个位置，到中间
+绿色的view，serial EM 拍摄一张
+点上marker，图上点上一个marker，navigator--shift item
+多进行几次，lmm和实际位置就一样了
+
