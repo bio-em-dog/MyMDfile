@@ -1,13 +1,13 @@
 # 总体的
 
-保护K2,在变焦，uncentric，colume valve之类的时候，下屏幕，保护k2  
-stop的时候会自动关colume valve  
+保护K2,在变焦，uncentric，column valve之类的时候，下屏幕，保护k2  
+stop的时候会自动关column valve  
 mag之类的，都在serial EM 调节  
 
 ## 1 load sample 
 
 给铜网加auto ring  
-加ring的棒子一定要擦干  
+加ring的棒子一定要擦干，不然下一次用的时候会冻住
 
 
 ## 2 autoloader
@@ -34,9 +34,9 @@ motage-9×9 然后会出现要存的位置，存为lmm(low mag map)
 在一个标志性的点add marekr  
 选中marker，go to xyz  
 下荧屏ccd，看到那个位置，到K2（绿色框）中间  
-绿色的view，serial EM 拍摄一张
-点上marker，图上点上一个marker，navigator--shift item
-多进行几次，lmm和实际位置就一样了
+绿色的view，serial EM 拍摄一张  
+点上marker，图上点上一个marker，navigator--shift item  
+多进行几次，lmm和实际位置就一样了  
 
 ### 拍中地图
 
@@ -44,7 +44,7 @@ motage-9×9 然后会出现要存的位置，存为lmm(low mag map)
 选上acquire
 
 或者不拍小地图，直接搞中地图  
-在荧屏下直接挪到孔的中间，然后navigator窗口-add stage position
+在荧屏下直接挪到孔的中间，然后navigator窗口-add stage position，然后再电镜操作界面的stage位置上也add一个位置，防止下一次挪到同一位置
 
 ### 选点
 
@@ -52,4 +52,6 @@ adding point
 第一个点加在碳膜上用于对焦，剩下的点选在附近
 都选上acquire和file
 
-### set那里设置好
+### 拍摄
+se那里设置好  
+所有的point都加上Acquire

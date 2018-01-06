@@ -329,7 +329,7 @@ lwd，line width
 
 ![](C:\Users\jia\Documents\MyMD\par.png)
 
-###Title, Axis, and Legends
+### Title, Axis, and Legends
 title()  
 axis()  
 legends()  
@@ -344,5 +344,82 @@ hist(wt)
 hist(mpg)
 hist(disp)
 detach(mtcars)
+```
+
+# 函数
+## 控制符operators
+> >= <= == !=
+|或 &与
+
+## Control Flow
+### repetition重复语句
+
+能用函数，向量解决的，就不用循环解决
+
+#### for loop
+```{R}
+for(i in 1:10){
+  print(i)
+}
+```
+
+#### while loop
+```{r}
+i = 1
+while(i <= 10){
+  print(i)
+  i=i+1
+}
+```
+
+### Conditional Execution 条件执行
+
+#### if-else
+
+```{r}
+i = 1
+if(i == 1){
+  print("Hello World")
+}
+```
+
+#### switch
+
+相当于elif的作用，switch(i,匹配=替换成,匹配=替换成)
+switch work in two ways: number, character
+
+```{r}
+i = 2
+if(i == 1){
+  print("Hello World!")
+}else{
+  print("Goodbye World!")
+}
+```
+
+```{r}
+feelings = c("sad", "afraid")
+for (i in feelings){
+  print(
+    switch(i,
+           happy  = "I am glad you are happy",
+           afraid = "There is nothing to fear",
+           sad    = "Cheer up",
+           angry  = "Calm down now"
+    )
+  )
+}
+```
+
+## User Defined function
+
+function(要传递的参数,)
+
+```{r}
+myfunction = function(x,a,b,c){
+  return(a*sin(x)^2 - b*x + c)
+}
+curve(myfunction(x,20,3,4),xlim=c(1,20))
+
 ```
 
