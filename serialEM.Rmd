@@ -3,11 +3,13 @@
 保护K2,在变焦，uncentric，column valve之类的时候，下屏幕，保护k2  
 stop的时候会自动关column valve  
 mag之类的，都在serial EM 调节  
+magnification, spot size, intensity之后勾选取消勾选continuous update of mag&beam
+
 
 ## 1 load sample 
 
 给铜网加auto ring  
-加ring的棒子一定要擦干，不然下一次用的时候会冻住
+加ring的棒子一定要擦干冷风吹干，不然下液氮会冻住
 
 
 ## 2 autoloader
