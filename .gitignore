@@ -1,9 +1,13 @@
+#file
 .Rproj.user
 .Rhistory
 .RData
 .Ruserdata
+*.html
+*.png
+
+#folder
 yuxin/muideen
 test
 R_study
-*.html
-*.png
+cheatsheet

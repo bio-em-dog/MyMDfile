@@ -55,5 +55,5 @@ adding point
 都选上acquire和file
 
 ### 拍摄
-se那里设置好  
+setup那里设置好  
 所有的point都加上Acquire
