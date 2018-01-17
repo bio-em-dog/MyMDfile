@@ -51,6 +51,8 @@ server <- function(input, output){
     summary(mpgData)
     input$select
   })
+  #print
+  
   output$table <- renderTable({
     mpgData
 #    if (input$select=="All")
