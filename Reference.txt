@@ -82,4 +82,6 @@ burmester,2001 - Molecular evolution of the arthropod hemocyanin superfamily.
 
 
 liquid nitrogen cooled liquid ethane
-defocus range
+defocus range 2～3 using serial EM 
+serial EM was used  an automatical image recording。
+Image was automatical recorded by sEM wiht a defoucus rage 。
