@@ -129,7 +129,7 @@ total|1ml|5ml
 数据处理和三维重构主要使用EMAN2和Relion软件。
 
 ### 低分辨数据的重构
-在广东省疾控中心拍摄的低分辨数据在实验室工作站处理。使用EMAN2的e2boxer模块半自动框选颗粒。先在swam模式下，点击选择10个左右的模板，模板应尽量选择清晰、独立的颗粒，应包含所有出现的投影模式。调整threshold使得尽可能多的颗粒被自动框选，完成后保存颗粒坐标。使用Relion的Particle Extraction功能，将颗粒坐标导入。使用Relion进行reference free 2D分类，选取清晰完整的分类，使用EMAN2的initial model功能构建初始模型。再使用relion对初始模型使用经过ctf校正的颗粒进行精修，得到低分辨模型。
+在广东省疾控中心拍摄的低分辨数据在实验室工作站处理。使用EMAN2的e2boxer模块半自动框选颗粒。先在swam模式下，点击选择10个左右的模板，模板应尽量选择清晰、独立的颗粒，应尽量包含所有出现的投影模式、欠焦量、冰厚度、冰污染程度、颗粒衬度。调整threshold使得尽可能多的颗粒被自动框选，完成后保存颗粒坐标。使用Relion的Particle Extraction功能，将颗粒坐标导入。使用Relion进行reference free 2D分类，选取清晰完整的分类，使用EMAN2的initial model功能构建初始模型。再使用relion对初始模型使用经过ctf校正的颗粒进行精修，得到低分辨模型。
 
 ### 低分辨数据的重构
 在浙江大学冷冻电镜中心收集的高分辨数据数据量庞大，借助超级计算中心的计算节点进行运算。首先使用MotionCorr2软件处理原始的Movies，校正图像漂移，进行Dose Weighting即去除被电子损伤较为严重的帧。使用Gctf软件进行CTF(contrast transfer founction)参数估计，同时进行EPA(Equal Phase Analysis)分析，估算图片的最终分辨率。使用自行编写的脚本和人工目视，筛查去除最终分辨率低、有大面积冰污染、拍在碳膜上的照片。使用Gautomatch软件，以低分辨模型在各个方向的投影为模板，进行自动框选颗粒。手动调整颗粒的cutoff threshold，留下尽可能多的颗粒和尽可能少的杂质。使用Relion的Particle Extraction功能，将颗粒导入并且bin2以加速计算。使用Relion进行reference free 2D分类，保留清晰、完整、颗粒数多的分类，去除冰晶、污染产生的不清晰分类，重复进行reference free 2D分类，直到冰晶或污染都被去除。使用Reflion以低分辨模型为参考，进行3D分类，选取与低分模型整体结构相似的分类。对选出分类中的每一个颗粒进行Local CTF参数估计，并且重新导入没有压缩的颗粒。使用这些颗粒精修低分辨模型得到3.47A分辨率的电子密度模型。
