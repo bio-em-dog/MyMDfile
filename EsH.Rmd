@@ -122,24 +122,30 @@ total|1ml|5ml
 较低分辨的数据在广东省疾病预防控制中心收集，用于条件摸索和模型质量验证。使用Gatan626冷冻传输架将冷冻好的铜网转移到预冷好的冷冻样品杆上，使用FEI公司的Tecnai G2 F20观察拍摄。拍摄条件：Low Dose模式，200Kv加速电压，100k放大倍数，35e/A^2^，Apixel=1.07，欠焦量在2μm\~3.5μm，FEI Eagle相机收集4k×4K照片。
 
 ### 高分辨数据的收集
-高分辨数据在浙江大学冷冻电镜中心收集。使用配备Gatan Summit K2直接电子探测相机的FEI Titan Krios冷冻电镜拍摄。电镜工作在300Kv加速电压下，放大倍数29,000倍，Low Dose模式下，调节光斑大小使得电子剂量率为6e/s/A^2^。SerialEM软件用于辅助收集，设置欠焦量范围1μm\~3μm，高速收集模式。直接电子探测相机工作在SuperResolution模式下，Apixel=0.507，以Movies的形式收集数据，每套数据24帧，总曝光时间为6s。
+高分辨数据在浙江大学冷冻电镜中心收集。使用配备Gatan Summit K2直接电子探测相机的FEI Titan Krios冷冻电镜拍摄。电镜工作在300Kv加速电压下，放大倍数29,000倍，此放倍数下Apixel=1.014，Low Dose模式下，调节光斑大小使得电子剂量率为6e/s/A^2^。SerialEM软件用于辅助收集，设置欠焦量范围1μm\~3μm，因对拍摄位置定位精度要求不高，使用快速收集脚本自动拍照。直接电子探测相机工作在SuperResolution模式下，过采样后得到Apixel=0.507，以Movies的形式收集数据，每套数据24帧，总曝光时间为6s。
 
 ## 2.4 三维重构
 
-数据处理和三维重构主要使用EMAN2和Relion软件。
+**小小介绍一下原理**
+
+数据处理主要使用目前主流的软件包EMAN2和Relion2.1，一些特定处理使用该方向上的专用软件，如用于漂移矫正的MotionCorr2;用于自动框选颗粒的Gautomatch;进行CTF(Contrast Transfer Founction)参数估计的Gctf。一些自行编写的脚本也用于数据组织和分析。
 
 ### 低分辨数据的重构
-在广东省疾控中心拍摄的低分辨数据在实验室工作站处理。使用EMAN2的e2boxer模块半自动框选颗粒。先在swam模式下，点击选择10个左右的模板，模板应尽量选择清晰、独立的颗粒，应尽量包含所有出现的投影模式、欠焦量、冰厚度、冰污染程度、颗粒衬度。调整threshold使得尽可能多的颗粒被自动框选，完成后保存颗粒坐标。使用Relion的Particle Extraction功能，将颗粒坐标导入。使用Relion进行reference free 2D分类，选取清晰完整的分类，使用EMAN2的initial model功能构建初始模型。再使用relion对初始模型使用经过ctf校正的颗粒进行精修，得到低分辨模型。
+在广东省疾控中心拍摄的低分辨数据在实验室工作站处理。使用EMAN2的e2boxer模块半自动框选颗粒。先在swam模式下，点击选择10个左右的模板，模板应尽量选择清晰、独立的颗粒，应尽量包含所有出现的投影模式、欠焦量、冰厚度、冰污染程度、颗粒衬度。调整threshold使得尽可能多的颗粒被自动框选，完成后保存颗粒坐标。使用Relion的Particle Extraction功能，将颗粒坐标导入，进行reference free 2D分类。选取清晰完整的分类（尽量包含各个取向的投影），使用EMAN2的initial model功能构建初始模型。再使用Relion对初始模型使用经过CTF校正的颗粒进行精修，得到低分辨模型。
 
-### 低分辨数据的重构
-在浙江大学冷冻电镜中心收集的高分辨数据数据量庞大，借助超级计算中心的计算节点进行运算。首先使用MotionCorr2软件处理原始的Movies，校正图像漂移，进行Dose Weighting即去除被电子损伤较为严重的帧。使用Gctf软件进行CTF(contrast transfer founction)参数估计，同时进行EPA(Equal Phase Analysis)分析，估算图片的最终分辨率。使用自行编写的脚本和人工目视，筛查去除最终分辨率低、有大面积冰污染、拍在碳膜上的照片。使用Gautomatch软件，以低分辨模型在各个方向的投影为模板，进行自动框选颗粒。手动调整颗粒的cutoff threshold，留下尽可能多的颗粒和尽可能少的杂质。使用Relion的Particle Extraction功能，将颗粒导入并且bin2以加速计算。使用Relion进行reference free 2D分类，保留清晰、完整、颗粒数多的分类，去除冰晶、污染产生的不清晰分类，重复进行reference free 2D分类，直到冰晶或污染都被去除。使用Reflion以低分辨模型为参考，进行3D分类，选取与低分模型整体结构相似的分类。对选出分类中的每一个颗粒进行Local CTF参数估计，并且重新导入没有压缩的颗粒。使用这些颗粒精修低分辨模型得到3.47A分辨率的电子密度模型。
+### 高分辨数据的重构
+在浙江大学冷冻电镜中心收集的高分辨数据数据量庞大，借助超级计算中心的计算节点进行运算。首先使用MotionCorr2软件处理原始的Movies，校正图像漂移，进行Dose Weighting即去除被电子损伤较为严重的帧。使用Gctf软件进行CTF参数估计，同时进行EPA(Equal Phase Analysis)，估算图片的最终分辨率。使用自行编写的脚本（附件1.1）和人工目测检查，筛查去除最终分辨率低、有大面积冰污染、拍在碳膜上的照片。
 
-加入结构因子，以FSC=0.14的标准计算分辨率。
+使用Gautomatch软件，以低分辨模型在各个方向的投影为模板，进行自动框选颗粒。手动调整颗粒的cutoff threshold，留下尽可能多的颗粒和尽可能少的杂质。使用Relion的Particle Extraction功能，将颗粒导入并且bin2以加速计算。使用Relion进行reference free 2D分类，保留清晰、完整、颗粒数多的分类，去除冰晶、污染产生的不清晰分类，重复进行reference free 2D分类，直到冰晶或污染都被去除。使用自行编写的脚本（附件1.2）
+
+使用Reflion以低分辨模型为参考，进行3D分类，选取与低分模型整体结构相似的分类。对选出分类中的每一个颗粒进行Local CTF参数估计，并且重新导入没有压缩的颗粒。使用这些颗粒精修低分辨模型，得到3.47A分辨率的电子密度模型。
+
+使用Relion计算结构因子，sharpen模型，加入solvent msak，以FSC=0.14的标准计算分辨率。
 
 
 ## 2.5 构建原子模型
 
-使用model base网站,根据现有同源序列对中华绒螯蟹血蓝蛋白序列进行理论模拟建模。
+使用model base网站,根据现有同源序列对中华绒螯蟹血蓝蛋白序列进行理论模拟建模。与PDB上已发表的同亚门结构进行对比。
 使用Chimera软件，打开电子密度(map)和理论计算建立的氨基酸序列模型(model)，手动调整map与model的位置，使得model可以匹配进map，保存model和map的相对位置。使用Coot软件打开经过粗略对准的map和model，首先调整model中的氨基酸碳主链，使其碳链大体走向符合map密度的走向，再调整model中的氨基酸侧链位置使其符合map中的侧链密度。
 
 # 结果与讨论
@@ -175,12 +181,25 @@ FSC图
 # 参考文献
 
 # 缩略词
-Es
-Hc
-PBS
-UF
-UA
-PAGE
-CTF contrast transfer founction
-EPA
-FSC
+
+CTF Contrast Transfer Founction  衬度传递函数
+Es  Eriocheir sinensis  中华绒螯蟹
+EPA  Equal Phase Analysis  等相位分析
+FSC  Fourier shell correlation  傅立叶壳相关系数
+Hc  Hemocyanin  血蓝蛋白
+PBS  Phosphate Buffer Saline  磷酸盐缓冲溶液
+UA  Uranium Acetate  醋酸铀
+UF  Uranium Formate  甲酸铀
+PAGE  Polyacrylamide Gel Electrophoresis  聚丙烯酰氨凝胶电泳
+SDS  Sodium Dodecyl Sulfate  十二烷基磺酸钠
+h
+m
+s
+
+# 附录
+
+脚本
+
+最终fsc
+
+序列
