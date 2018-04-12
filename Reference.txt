@@ -80,6 +80,8 @@
 
 burmester,2001 - Molecular evolution of the arthropod hemocyanin superfamily. 
 
+Molecular cloning and characterization of three novel Hemocyanins from Chinese mitten crab,Eriocheir sinensis
+
 
 liquid nitrogen cooled liquid ethane
 defocus range 2～3 using serial EM 
