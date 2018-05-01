@@ -10,9 +10,8 @@ editor_options:
 
 # 摘要
 
-血蓝蛋白(Hemocyanin,Hc)广泛存在于节肢动物和软体动物的血淋巴中，主要行使氧气运输功能，同时也行使着免疫、存储等功能，是一种重要的蛋白。中华绒螯蟹(*Eriocheir sinensis*,Es)俗称河蟹、大闸蟹，是一种重要的经济水产，属于节肢动物门。节肢动物的血蓝蛋白与软体动物血蓝蛋白在基因结构和形态上都完全不同，现有的研究。。。。
-
-本研究借助冷冻电镜三维重构技术(Cryo-electron microscopy 3D-reconstruction)，获得了中华绒螯蟹血蓝蛋白的？？A分辨率三维结构，并构建了原子模型。
+血蓝蛋白(Hemocyanin,Hc)广泛存在于节肢动物和软体动物的血淋巴中，主要行使氧气运输功能，同时也行使着免疫、存储等功能，是一种重要的功能蛋白。中华绒螯蟹(*Eriocheir sinensis*,Es)俗称河蟹、大闸蟹，是一种重要的经济水产，属于节肢动物门。节肢动物的血蓝蛋白与软体动物血蓝蛋白在基因和形态上都完全不同，现有的研究对于软体动物血蓝蛋白的研究较多，对于节肢动物血蓝蛋白的研究较少。
+本研究借助冷冻电镜三维重构技术(Cryo-electron microscopy 3D-reconstruction)，获得了中华绒螯蟹血蓝蛋白的？？A分辨率三维结构，并构建了原子模型。以获得的模型为基础，分析了亚基之间的相互作用，氧气运输过程中的变构协同效应。
 
 # 前言
 
@@ -134,16 +133,18 @@ total|1ml|5ml
 在广东省疾控中心拍摄的低分辨数据在实验室工作站处理。使用EMAN2的e2boxer模块半自动框选颗粒。先在swam模式下，点击选择10个左右的模板，模板应尽量选择清晰、独立的颗粒，应尽量包含所有出现的投影模式、欠焦量、冰厚度、冰污染程度、颗粒衬度。调整threshold使得尽可能多的颗粒被自动框选，完成后保存颗粒坐标。使用Relion的Particle Extraction功能，将颗粒坐标导入，进行reference free 2D分类。选取清晰完整的分类（尽量包含各个取向的投影），使用EMAN2的initial model功能构建初始模型。再使用Relion对初始模型使用经过CTF校正的颗粒进行精修，得到低分辨模型。
 
 ### 高分辨数据的重构
-在浙江大学冷冻电镜中心收集的高分辨数据数据量庞大，借助超级计算中心的计算节点进行运算。首先使用MotionCorr2软件处理原始的Movies，校正图像漂移，进行Dose Weighting即去除被电子损伤较为严重的帧。使用Gctf软件进行CTF参数估计，同时进行EPA(Equal Phase Analysis)，估算图片的最终分辨率。使用自行编写的脚本（附件1.1）和人工目测检查，筛查去除最终分辨率低、有大面积冰污染、拍在碳膜上的照片。
+在浙江大学冷冻电镜中心收集的高分辨数据数据量庞大，在实验室工作站和东校区实验中心服务器上进行计算。首先使用MotionCorr2软件处理原始的Movies，校正图像漂移，进行Dose Weighting即去除被电子损伤较为严重的帧。使用Gctf软件进行CTF参数估计，同时进行EPA(Equal Phase Analysis)，估算图片的最终分辨率。使用自行编写的脚本和人工目测检查，筛查去除最终分辨率低、有大面积冰污染、拍在碳膜上的照片。
 
-使用Gautomatch软件，以低分辨模型在各个方向的投影为模板，进行自动框选颗粒。手动调整颗粒的cutoff threshold，留下尽可能多的颗粒和尽可能少的杂质。使用Relion的Particle Extraction功能，将颗粒bin2（一种压缩方法，将相邻2个像素相加）后导入以加速计算。使用Relion进行reference free 2D分类，保留清晰、完整、颗粒数多的分类，去除冰晶、污染产生的不清晰分类，重复进行reference free 2D分类，直到冰晶或污染都被去除。使用Reflion以低分辨模型为参考，进行3D分类，选取与低分模型整体结构相似的分类。使用自行编写的脚本（附件1.2）检查这一分类中的颗粒质量。
+使用Gautomatch软件，以20A低通滤波后的低分辨模型在各个空间方向上的投影为模板，自动框选颗粒。手动调整选到颗粒的cutoff threshold，留下尽可能多的颗粒和尽可能少的杂质。使用Relion的Particle Extraction功能，将颗粒bin2（一种压缩方法，将相邻2个像素相加）以加速计算。此后的步骤都在Relion中进行。进行无参考（reference free）2D分类，保留清晰、完整、颗粒数多的分类，去除冰晶、污染产生的不清晰分类，去除破碎损伤的蛋白产生的不完整分类。重复进行无参考2D分类，直到冰晶、污染颗粒都被去除。使用Relion以低分辨模型为参考，进行3D分类，选取与低分模型整体结构相似的分类。使用自行编写的脚本检查这一分类中的颗粒质量。
 
-对选中的3D分类中的每一个颗粒进行Local CTF参数估计，重新导入不压缩的颗粒，使用脚本（附件1.3）替换原有的Global CTF值。使用这些颗粒精修低分辨模型，得到高分辨率的的电子密度模型。使用Relion计算结构因子，sharpen模型，构建并使用solvent msak，以FSC=0.14的标准计算最终分辨率。
+使用Gctf软件对3D分类中选出的最好分类中的每一个颗粒进行Local CTF参数估计，重新导入不压缩的颗粒，使用自行编写的脚本替换原有的Global CTF值。使用这些颗粒精修低分辨模型，得到较高分辨率的的电子密度模型。将同一批颗粒转为EMAN格式并写入CTF参数，使用jspr软件进行更为精密的Refine，最终获得了？？A分辨率的电子密度模型。
+
+使用Relion计算结构因子，sharpen模型，构建并使用solvent msak，以FSC=0.14的标准计算最终分辨率。
 
 
 ## 2.5 构建原子模型
 
-EsHc的序列来自Sun等[Molecular cloning, characterization and mRNA expression ofcopper-binding protein hemocyanin subunit in Chinese mitten crab,Eriocheir sinensis]，GenBank: JF802122.1。以同为甲壳亚门(Crustacean)的加州龙虾(Panulirus interruptus)血蓝蛋白结构(PDB:1HC1)作为参考。使用蛋白质同源建模工具ModBase(https://modbase.compbio.ucsf.edu/modbase-cgi/)建立EsH的伪原子模型。建模完成后与已发表的1HC1结构进行目测比对以确保正确。
+EsHc的序列来自Sun等[Molecular cloning, characterization and mRNA expression ofcopper-binding protein hemocyanin subunit in Chinese mitten crab,Eriocheir sinensis]，GenBank: JF802122.1。以同为甲壳亚门(Crustacean)的加州刺龙虾(Panulirus interruptus)血蓝蛋白结构(PDB:1HC1)作为参考，使用蛋白质同源建模工具ModBase(https://modbase.compbio.ucsf.edu/modbase-cgi/)建立EsH的伪原子模型。建模完成后与已发表的1HC1结构进行目测比对以确保正确。
 使用Chimera软件，打开电子密度(map)和理论计算建立的EsH伪原子模型(model)，手动调整map与model的位置，使得model大体对应到map上的对应位置，再使用Fit in map功能将model精细匹配到map上的对应位置。保存model和map的相对位置。使用Coot软件打开经过粗略对准的map和model进行进一步精修。调整model中的氨基酸碳主链，修改伪原子模型中的预测错误，使其碳链大体走向符合map密度的走向，同时也符合氨基酸折叠基本规律。调整model中的氨基酸侧链位置使其符合map中的侧链密度，同时也符合侧链键长键角基本规律。使用Phenix软件的real space refine功能精修侧链位置。再使用Coot手动调整异常位置，如异常的碳主链平面角，过近(小于2.2A)的原子距离等等。最终模型使用PDB的validation功能打分。
 
 # 结果与讨论
@@ -179,7 +180,7 @@ EsH电子密度模型的整体分辨率为？？？A。局部分辨率如图？�
 
 ### 原子模型与亚基结构
 
-使用2.5节中方法获得了EsH亚基的结构模型，这个模型可以很好地匹配电子密度模型（图？？？）。（图？？？）比较了理论预测得到的模型与经过调整的最终模型，红色圈表示了调整较大的部分，主要是一些柔性的loop。
+使用2.5节中方法获得了EsH亚基的结构模型，这个模型可以很好地匹配电子密度模型（图？？？）。（图？？？）比较了理论预测得到的模型与经过调整的最终模型，红色圈表示了调整较大的部分，主要是一些柔性的loop。（图？？？）比较了本研究获得的模型与通过X射线晶体学解析的加州刺龙虾和美洲鲎(Limulus polyphemus)血蓝蛋白模型，在2处靠近外侧的loop结构上，本研究都解出了另外两个结构无法解析的接结构。
 
 EsH的亚基在结构上可以分为三个部分：N端结构域(Hemocyanin_N)从N端开始，至第？？位氨基酸残基(AA)，亚基组装后，位于EsH整体的外侧（图？？？），这一部分的肽链形成了大量α-helix二级结构，α-helix再形成桶状三级结构，虽然位于蛋白外侧，但也很稳定，从局部分辨率图（图？？）中可以看出，这一部分达到了相对较高的局部分辨率；中间结构域(Hemocyanin_M)从？？位至？？位AA，亚基组装后，位于EsH整体的内侧（图？？？），这一部分的肽链形成了大段α-helix，小段β-sheet的二级结构，α-helix形成桶状三级结构，加之位于蛋白内侧，疏水作用的额外稳定效果，结构非常稳定，从局部分辨率图（图？？）中可以看出这一部分的局部分辨率也是较高的。C端结构域(Hemocyanin_C)从第？位AA开始，至C端，亚基组装后，位于EsH整体的外侧（图？？？），这一部分肽链的形成了一些分散的β-sheet和α-helix，被较长的loop连接，柔性较强，从局部分辨率图（图？？）中可以看出，这一部分的局部分辨率相对较差，且存在一些柔性过大，无法解得电子密度的片段（图？）。
 
